@@ -8,17 +8,13 @@ ttbar: &ttbar
   name: ttbar
   equal_jets: False
   pattern:
-    - "user.svanstro.410470.e6337_s3681_r13144_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-10_kfoldtrain_output.h5/*.h5"
-    - "user.svanstro.601229.e8514_s4162_r14622_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-10_kfoldtrain_output.h5/*.h5"
-    - "user.svanstro.601230.e8514_s4162_r14622_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-10_kfoldtrain_output.h5/*.h5"
+    - "user.midandre.601589.e8549_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
 
 zprime: &zprime
   name: zprime
   equal_jets: False
   pattern:
-    - "user.svanstro.800030.e7954_s3681_r13144_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-10_kfoldtrain_output.h5/*.h5"
-    - "user.svanstro.800030.e7954_s3797_r13144_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-19_kfoldtrain_output.h5/*.h5"
-    - "user.svanstro.800030.e8514_s4162_r14622_p5922.tdd.EMPFlow_kfold.24_2_27.23-11-10_kfoldtrain_output.h5/*.h5"
+    - "user.midandre.800030.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
 
 
 lowpt: &lowpt
@@ -38,7 +34,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [bjets, cjets]
-    num_jets: 45_000_000
+    num_jets: 4_500_000
     equal_jets: False
 
   - region:
@@ -46,7 +42,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [ujets]
-    num_jets: 90_000_000
+    num_jets: 9_000_000
     equal_jets: False
 
   - region:
@@ -54,7 +50,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [taujets]
-    num_jets: 6_250_000
+    num_jets: 625_000
     equal_jets: False
 
   - region:
@@ -62,7 +58,7 @@ components:
     sample:
       <<: *zprime
     flavours: [bjets, cjets]
-    num_jets: 18_000_000
+    num_jets: 1_800_000
     equal_jets: False
 
   - region:
@@ -70,7 +66,7 @@ components:
     sample:
       <<: *zprime
     flavours: [ujets]
-    num_jets: 36_000_000
+    num_jets: 3_600_000
     equal_jets: False
 
   - region:
@@ -78,7 +74,7 @@ components:
     sample:
       <<: *zprime
     flavours: [taujets]
-    num_jets: 2_500_000
+    num_jets: 250_000
     equal_jets: False
 
 
@@ -96,6 +92,6 @@ resampling:
 global:
   jets_name: jets
   batch_size: 1_000_000
-  num_jets_estimate: 25_000_000
-  base_dir: /home/xzcappon/phd/datasets/combined_run2_run3/p5922/high_stats/fold0
-  ntuple_dir: /home/xucapsva/data/ftag/h5/gn2_v01/ntuples
+  num_jets_estimate: 2_500_000
+  base_dir: /work/ws-tmp/g044906-retraining/data/samples_limited_stats
+  ntuple_dir: /work/ws-tmp/g044906-retraining/data/raw_h5_samples

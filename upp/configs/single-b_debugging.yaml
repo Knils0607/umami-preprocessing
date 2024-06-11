@@ -1,4 +1,5 @@
 variables: !include /work/ws-tmp/g044906-retraining/UPP/umami-preprocessing/upp/configs/variables.yaml
+# variables: !include /work/ws-tmp/g044906-retraining/UPP/umami-preprocessing/upp/configs/variables_tutorial.yaml
 global_cuts: !include /work/ws-tmp/g044906-retraining/UPP/umami-preprocessing/upp/configs/splits/simple-split.yaml
 
 # for k-folded splits, only required for final trainings of GN2
@@ -8,14 +9,14 @@ ttbar: &ttbar
   name: ttbar
   equal_jets: False
   pattern:
+#    - "ttbar.h5"
     - "user.midandre.601589.e8549_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
-    - "user.midandre.601229.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
-    - "user.midandre.601230.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
 
 zprime: &zprime
   name: zprime
   equal_jets: False
   pattern:
+#    - "zpext.h5"
     - "user.midandre.800030.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
 
 
@@ -36,7 +37,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [bjets, cjets]
-    num_jets: 45_000_000
+    num_jets: 4_500_000
     equal_jets: False
 
   - region:
@@ -44,7 +45,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [ujets]
-    num_jets: 90_000_000
+    num_jets: 9_000_000
     equal_jets: False
 
   - region:
@@ -52,7 +53,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [taujets]
-    num_jets: 6_250_000
+    num_jets: 625_000
     equal_jets: False
 
   - region:
@@ -60,7 +61,7 @@ components:
     sample:
       <<: *zprime
     flavours: [bjets, cjets]
-    num_jets: 18_000_000
+    num_jets: 1_800_000
     equal_jets: False
 
   - region:
@@ -68,7 +69,7 @@ components:
     sample:
       <<: *zprime
     flavours: [ujets]
-    num_jets: 36_000_000
+    num_jets: 3_600_000
     equal_jets: False
 
   - region:
@@ -76,7 +77,7 @@ components:
     sample:
       <<: *zprime
     flavours: [taujets]
-    num_jets: 2_500_000
+    num_jets: 250_000
     equal_jets: False
 
 
@@ -93,7 +94,8 @@ resampling:
 # note: sensible defaults are defined in the PreprocessingConfig constructor
 global:
   jets_name: jets
-  batch_size: 1_000_000
-  num_jets_estimate: 25_000_000
-  base_dir: /work/ws-tmp/g044906-retraining/data/upp_output/samples_high_stats
+  batch_size: 100_000
+  num_jets_estimate: 2_500_000
+  base_dir: /work/ws-tmp/g044906-retraining/data/tutorial_output
+#  ntuple_dir: /work/ws-tmp/g044906-retraining/data/tutorial_samples
   ntuple_dir: /work/ws-tmp/g044906-retraining/data/raw_h5_samples

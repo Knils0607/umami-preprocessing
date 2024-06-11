@@ -36,7 +36,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [bjets, cjets]
-    num_jets: 45_000_000
+    num_jets: 4_500_000
     equal_jets: False
 
   - region:
@@ -44,7 +44,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [ujets]
-    num_jets: 90_000_000
+    num_jets: 9_000_000
     equal_jets: False
 
   - region:
@@ -52,7 +52,7 @@ components:
     sample:
       <<: *ttbar
     flavours: [taujets]
-    num_jets: 6_250_000
+    num_jets: 625_000
     equal_jets: False
 
   - region:
@@ -60,7 +60,7 @@ components:
     sample:
       <<: *zprime
     flavours: [bjets, cjets]
-    num_jets: 18_000_000
+    num_jets: 1_800_000
     equal_jets: False
 
   - region:
@@ -68,7 +68,7 @@ components:
     sample:
       <<: *zprime
     flavours: [ujets]
-    num_jets: 36_000_000
+    num_jets: 3_600_000
     equal_jets: False
 
   - region:
@@ -76,7 +76,7 @@ components:
     sample:
       <<: *zprime
     flavours: [taujets]
-    num_jets: 2_500_000
+    num_jets: 250_000
     equal_jets: False
 
 
@@ -93,7 +93,7 @@ resampling:
 # note: sensible defaults are defined in the PreprocessingConfig constructor
 global:
   jets_name: jets
-  batch_size: 1_000_000
-  num_jets_estimate: 25_000_000
-  base_dir: /work/ws-tmp/g044906-retraining/data/upp_output/samples_high_stats
+  batch_size: 100_000
+  num_jets_estimate: 2_500_000
+  base_dir: /work/ws-tmp/g044906-retraining/data/upp_output/samples_limited_stats_try8
   ntuple_dir: /work/ws-tmp/g044906-retraining/data/raw_h5_samples

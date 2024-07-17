@@ -1,0 +1,99 @@
+variables: !include /work/ws-tmp/g044906-retraining/UPP/umami-preprocessing/upp/configs/variables.yaml
+global_cuts: !include /work/ws-tmp/g044906-retraining/UPP/umami-preprocessing/upp/configs/splits/simple-split.yaml
+
+# for k-folded splits, only required for final trainings of GN2
+# global_cuts: !include splits/fold0.yaml
+
+ttbar: &ttbar
+  name: ttbar
+  equal_jets: False
+  pattern:
+    # - "user.midandre.601589.e8549_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
+    - "user.midandre.601229.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
+    - "user.midandre.601230.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
+
+# zprime: &zprime
+#   name: zprime
+#   equal_jets: False
+#   pattern:
+#     - "user.midandre.800030.e8514_s4162_r14622_p6215.tdd.EMPflow_SMT.25_2_10.24-05-25_SMT_0.1_output.h5/*.h5"
+
+
+lowpt: &lowpt
+  name: lowpt
+  cuts:
+    - [pt_btagJes, ">", 20_000]
+    - [pt_btagJes, "<", 250_000]
+# highpt: &highpt
+#   name: highpt
+#   cuts:
+#     - [pt_btagJes, ">", 250_000]
+#     - [pt_btagJes, "<", 6_000_000]
+
+components:
+  - region:
+      <<: *lowpt
+    sample:
+      <<: *ttbar
+    flavours: [bjets, cjets]
+    num_jets: 4_500_000
+    equal_jets: False
+
+  - region:
+      <<: *lowpt
+    sample:
+      <<: *ttbar
+    flavours: [ujets]
+    num_jets: 9_000_000
+    equal_jets: False
+
+  - region:
+      <<: *lowpt
+    sample:
+      <<: *ttbar
+    flavours: [taujets]
+    num_jets: 625_000
+    equal_jets: False
+
+  # - region:
+  #     <<: *highpt
+  #   sample:
+  #     <<: *zprime
+  #   flavours: [bjets, cjets]
+  #   num_jets: 1_800_000
+  #   equal_jets: False
+
+  # - region:
+  #     <<: *highpt
+  #   sample:
+  #     <<: *zprime
+  #   flavours: [ujets]
+  #   num_jets: 3_600_000
+  #   equal_jets: False
+
+  # - region:
+  #     <<: *highpt
+  #   sample:
+  #     <<: *zprime
+  #   flavours: [taujets]
+  #   num_jets: 250_000
+  #   equal_jets: False
+
+
+resampling:
+  target: cjets
+  method: pdf
+  sampling_fraction: auto
+  variables:
+    pt_btagJes:
+      bins: [[20_000, 250_000, 50], [250_000, 1_000_000, 50], [1_000_000, 6_000_000, 50]]
+    absEta_btagJes:
+      bins: [[0, 2.5, 20]]
+
+# note: sensible defaults are defined in the PreprocessingConfig constructor
+global:
+  jets_name: jets
+  batch_size: 100_000
+  num_jets_estimate: 2_500_000
+  base_dir: /work/ws-tmp/g044906-retraining/data/upp_output/only_ttbar_limited_stats
+  ntuple_dir: /work/ws-tmp/g044906-retraining/data/raw_h5_samples
